@@ -19,3 +19,21 @@ Create a new environment
 ```
     pip install -r requirements.txt
 ```
+```
+    git config --global user.name "Tirth Kansagra"
+```
+```
+    git config --global user.email "202303055@dau.ac.in"
+```
+```
+    git add .
+```
+```
+    git status
+```
+```
+    git commit -m ""
+```
+```
+    git push origin main
+```
