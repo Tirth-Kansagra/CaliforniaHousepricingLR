@@ -1,1 +1,153 @@
-<h1>House Price Prediction</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>House Price Prediction</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background: #f4f7fb;
+			margin: 0;
+			padding: 0;
+			color: #1f2937;
+		}
+
+		.container {
+			max-width: 900px;
+			margin: 40px auto;
+			padding: 24px;
+		}
+
+		.card {
+			background: #ffffff;
+			border-radius: 14px;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+			padding: 28px;
+		}
+
+		h1 {
+			margin-top: 0;
+			margin-bottom: 8px;
+		}
+
+		p {
+			margin-top: 0;
+			color: #6b7280;
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+			gap: 16px;
+			margin-top: 24px;
+		}
+
+		.field label {
+			display: block;
+			margin-bottom: 6px;
+			font-weight: 600;
+		}
+
+		.field input {
+			width: 100%;
+			box-sizing: border-box;
+			padding: 12px 14px;
+			border: 1px solid #d1d5db;
+			border-radius: 10px;
+			font-size: 15px;
+		}
+
+		.actions {
+			margin-top: 24px;
+			display: flex;
+			gap: 12px;
+			flex-wrap: wrap;
+		}
+
+		button {
+			border: none;
+			border-radius: 10px;
+			padding: 12px 18px;
+			font-size: 15px;
+			font-weight: 600;
+			cursor: pointer;
+		}
+
+		.primary {
+			background: #2563eb;
+			color: white;
+		}
+
+		.secondary {
+			background: #e5e7eb;
+			color: #111827;
+			text-decoration: none;
+			display: inline-flex;
+			align-items: center;
+		}
+
+		.prediction {
+			margin-top: 22px;
+			padding: 16px;
+			background: #ecfdf5;
+			border: 1px solid #a7f3d0;
+			border-radius: 10px;
+			font-weight: 700;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="card">
+			<h1>House Price Prediction</h1>
+			<p>Enter the eight features below to predict the house price.</p>
+
+			<form action="/predict" method="post">
+				<div class="grid">
+					<div class="field">
+						<label for="MedInc">Median Income</label>
+						<input type="number" step="any" id="MedInc" name="MedInc" required>
+					</div>
+					<div class="field">
+						<label for="HouseAge">House Age</label>
+						<input type="number" step="any" id="HouseAge" name="HouseAge" required>
+					</div>
+					<div class="field">
+						<label for="AveRooms">Average Rooms</label>
+						<input type="number" step="any" id="AveRooms" name="AveRooms" required>
+					</div>
+					<div class="field">
+						<label for="AveBedrms">Average Bedrooms</label>
+						<input type="number" step="any" id="AveBedrms" name="AveBedrms" required>
+					</div>
+					<div class="field">
+						<label for="Population">Population</label>
+						<input type="number" step="any" id="Population" name="Population" required>
+					</div>
+					<div class="field">
+						<label for="AveOccup">Average Occupancy</label>
+						<input type="number" step="any" id="AveOccup" name="AveOccup" required>
+					</div>
+					<div class="field">
+						<label for="Latitude">Latitude</label>
+						<input type="number" step="any" id="Latitude" name="Latitude" required>
+					</div>
+					<div class="field">
+						<label for="Longitude">Longitude</label>
+						<input type="number" step="any" id="Longitude" name="Longitude" required>
+					</div>
+				</div>
+
+				<div class="actions">
+					<button type="submit" class="primary">Predict Price</button>
+				</div>
+			</form>
+
+			{% if prediction_text %}
+			<div class="prediction">{{ prediction_text }}</div>
+			{% endif %}
+		</div>
+	</div>
+</body>
+</html>

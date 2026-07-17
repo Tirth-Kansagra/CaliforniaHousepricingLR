@@ -36,5 +36,25 @@ def predict_api():
     print(output[0])
     return jsonify({"prediction": float(output[0])})
 
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    MedInc = float(request.form['MedInc'])
+    HouseAge = float(request.form['HouseAge'])
+    AveRooms = float(request.form['AveRooms'])
+    AveBedrms = float(request.form['AveBedrms'])
+    Population = float(request.form['Population'])
+    AveOccup = float(request.form['AveOccup'])
+    Latitude = float(request.form['Latitude'])
+    Longitude = float(request.form['Longitude'])
+
+    features = np.array([[MedInc, HouseAge, AveRooms, AveBedrms, Population, AveOccup, Latitude, Longitude]])
+    new_data = scalar.transform(features)
+    print(new_data)
+    output = regmodel.predict(new_data)
+    print(output[0])
+
+    return render_template('home.html', prediction_text=f'Predicted House Price: {output[0]}')
+
 if __name__ == "__main__":
     app.run(debug=True)
